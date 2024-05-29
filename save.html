@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .bg {
+            background-image:url('https://plus.unsplash.com/premium_photo-1661319040604-af98142bd517?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size:cover;
+            height:100vh;
+            display:flex;
+            flex-direction:row;
+            justify-content:flex-end;
+            align-items:center;
+        }
+        .k {
+            display:flex;
+            flex-direction:column;
+            background-color:aliceblue;
+            border-radius:15px;
+            padding:15px;
+            margin-right:70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg">   
+        <div class="k shadow">
+            <h1>Patient Details:</h1>
+            <div id="formDataDisplay"></div>
+            <label for="det">Medicines:</label>
+            <textarea cols="24" rows="10" id="det"></textarea>
+            <button id="saveBtn">Save</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const formData = JSON.parse(localStorage.getItem('formData'));
+            const formDataDisplay = document.getElementById('formDataDisplay');
+            
+            if (formData) {
+                formDataDisplay.innerHTML = `
+                    <p><strong>Full Name:</strong> ${formData.fname}</p>
+                    <p><strong>Phone Number:</strong> ${formData.phone}</p>
+                    <p><strong>Date:</strong> ${formData.date}</p>
+                    <p><strong>Time:</strong> ${formData.time}</p>
+                    <p><strong>Symptoms:</strong> ${formData.symptoms}</p>
+                `;
+            } else {
+                formDataDisplay.innerHTML = "<p>No form data available.</p>";
+            }
+
+            // Add event listener to save button
+            document.getElementById('saveBtn').addEventListener('click', function () {
+                const medicines = document.getElementById('det').value;
+                localStorage.setItem('medicines', medicines);
+                alert("Medicines saved successfully!");
+            });
+        });
+    </script>
+</body>
+</html>
