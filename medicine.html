@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .bg {
+            background-image:url('https://plus.unsplash.com/premium_photo-1661319040604-af98142bd517?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size:cover;
+            height:100vh;
+            display:flex;
+            flex-direction:row;
+            justify-content:flex-end;
+            align-items:center;
+        }
+        .k {
+            display:flex;
+            flex-direction:column;
+            background-color:aliceblue;
+            border-radius:15px;
+            padding:15px;
+            margin-right:70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg">   
+        <div class="k shadow">
+            <h1>Medicines:</h1>
+            <div id="medicinesDisplay"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const medicines = localStorage.getItem('medicines');
+            const medicinesDisplay = document.getElementById('medicinesDisplay');
+
+            if (medicines) {
+                medicinesDisplay.innerText = medicines;
+            } else {
+                medicinesDisplay.innerText = "No medicines available.";
+            }
+        });
+    </script>
+</body>
+</html>
